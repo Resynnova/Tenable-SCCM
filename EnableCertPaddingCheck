@@ -1,0 +1,39 @@
+$registryPath = "HKLM:\Software\Microsoft\Cryptography\Wintrust\Config"
+$registryPath64 = "HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config"
+$name = "EnableCertPaddingCheck"
+$value = "1"
+if([Environment]::Is64BitOperatingSystem)
+{
+    if(!(Test-Path $registryPath))
+    {
+        New-Item -Path $registryPath -Force | Out-Null
+        New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType String -Force | Out-Null
+    }
+    
+    else
+    {
+        New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType String -Force | Out-Null
+    }
+    if(!(Test-Path $registryPath64))
+    {
+        New-Item -Path $registryPath64 -Force | Out-Null
+        New-ItemProperty -Path $registryPath64 -Name $name -Value $value -PropertyType String -Force | Out-Null
+    }
+    
+    else
+    {
+        New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType String -Force | Out-Null
+    }
+}
+else {
+    if(!(Test-Path $registryPath))
+    {
+        New-Item -Path $registryPath -Force | Out-Null
+        New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType String -Force | Out-Null
+    }
+    
+    else
+    {
+        New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType String -Force | Out-Null
+    }
+}
