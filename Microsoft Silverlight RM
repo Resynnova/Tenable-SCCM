@@ -1,0 +1,13 @@
+#Discovery Script
+
+$SilverLight = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -eq 'Microsoft Silverlight'}
+if ($SilverLight.count -eq 0) 
+{
+    write-host $false
+}
+else {
+    write-host $true
+}
+
+#Remediation Script
+Start-Process "wmic.exe" -ArgumentList "product where caption='Microsoft Silverlight' call uninstall" -Wait
