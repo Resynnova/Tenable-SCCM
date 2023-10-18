@@ -1,0 +1,10 @@
+$version = ((Get-ChildItem 'C:\Windows\SysWOW64\Macromed\Flash\').name -match "FlashUtil32_(.*).exe")[0].split('_')[1].split('.')[0]
+$uninstallCommand = "C:\Windows\SysWOW64\Macromed\Flash\FlashUtil32_$($version).exe -uninstall -force"
+Invoke-Expression $uninstallCommand
+#Below displays powershell script for SCCM
+if(Test-Path('C:\Windows\SysWOW64\Macromed\Flash\')){
+    $version = ((Get-ChildItem 'C:\Windows\SysWOW64\Macromed\Flash\').name -match "FlashUtil32_(.*).exe")[0].split('_')[1].split('.')[0]
+    $uninstallCommand = "C:\Windows\SysWOW64\Macromed\Flash\FlashUtil32_$($version).exe -uninstall -force"
+    Invoke-Expression $uninstallCommand
+}
+    return $false
